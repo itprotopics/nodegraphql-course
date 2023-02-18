@@ -1,0 +1,17 @@
+{
+  "name": "graphql-basics",
+  "version": "1.0.0",
+  "description": "Basicos de node",
+  "main": "index.js",
+  "scripts": {
+    "start": "babel-node src/index.js",
+    "test": "echo \"Error: no test specifiec\" && exit 1"
+  },
+  "author": "JLAM",
+  "license": "ISC",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "graphql-yoga": "^3.6.0"
+  }
+}
