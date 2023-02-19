@@ -22,7 +22,7 @@ const resolvers = {
 
 
 
-const server =  GraphQLServer({
+const server =  new GraphQLServer({
     typeDefs,
     resolvers,
 })
