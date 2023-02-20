@@ -1,6 +1,7 @@
 {
   "name": "graphql-basics",
   "version": "1.0.0",
+<<<<<<< HEAD
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -12,5 +13,24 @@
   "dependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0"
+=======
+  "description": "Basicos de node",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js --exec babel-node",
+    "test": "echo \"Error: no test specifiec\" && exit 1"
+  },
+  "author": "JLAM",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.20.7",
+    "@babel/core": "^7.20.12",
+    "@babel/node": "^7.20.7",
+    "@babel/preset-env": "^7.20.2",
+    "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "graphql-yoga": "^3.6.0"
+>>>>>>> e441dea6335fac2770a01aa4b4d2cca0051a2a50
   }
 }
