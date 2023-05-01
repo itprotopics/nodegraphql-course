@@ -1,5 +1,7 @@
 
-exports.typeDefs = gql`
+import  {ApolloServer, gql} from "apollo-server";
+
+const typeDefs = gql`
     type Query {
         hello: [String!]!
         numberOfAnimals: Int
@@ -28,5 +30,9 @@ exports.typeDefs = gql`
       products: [Product!]!
     }
 `
+
+export {
+    typeDefs,
+}
 
 
