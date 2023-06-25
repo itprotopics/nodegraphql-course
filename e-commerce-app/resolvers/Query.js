@@ -15,8 +15,8 @@ const Query = {
     },
 
 
-    products: (parents, {filter}, {products, reviews}) => {
-        let filteredProducts = products;
+    products: (parents, {filter}, {db}) => {
+        let filteredProducts = db.products;
 
         if (filter) {
             const { onSale, avgRating } = filter;
@@ -30,7 +30,7 @@ const Query = {
                 filteredProducts = filteredProducts.filter((product) => {
                     let sumRating = 0;
                     let numReviews = 0;
-                    reviews.forEach((review) => {
+                    db.reviews.forEach((review) => {
                         if (review.productId === product.id ) {
                             sumRating = sumRating + review.rating;
                             numReviews = numReviews + 1;
@@ -45,14 +45,14 @@ const Query = {
         return filteredProducts;
     },
 
-    product: (parents, {id}, {products}) => {
-        return products.find(p => p.id === id);
+    product: (parents, {id}, {db}) => {
+        return db.products.find(p => p.id === id);
     },
 
-    categories: (parents, args, {categories}) => categories,
+    categories: (parents, args, {db}) => db.categories,
 
-    category: (parents, {id}, {categories}) => {
-        return categories.find(c => c.id === id);
+    category: (parents, {id}, {db}) => {
+        return db.categories.find(c => c.id === id);
     }
 };
 

@@ -286,10 +286,13 @@ const products = [
     },
   ];
   
+  const db = {
+    products,
+    categories,
+    reviews
+  }
 
 
   export {
-    products, 
-    categories,
-    reviews
+    db
   }

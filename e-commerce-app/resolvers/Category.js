@@ -1,9 +1,9 @@
 
 
 const Category = {
-  products: ({ id: categoryId }, { filter }, { products, reviews }) => {
+  products: ({ id: categoryId }, { filter }, { db }) => {
 
-    const categoryProducts = products.filter(p => p.categoryId === categoryId);
+    const categoryProducts = db.products.filter(p => p.categoryId === categoryId);
     let filteredCategoryProducts = categoryProducts;
 
     if (filter) {
@@ -20,7 +20,7 @@ const Category = {
         filteredCategoryProducts = filteredCategoryProducts.filter((product) => {
           let sumRating = 0;
           let numReviews = 0;
-          reviews.forEach((review) => {
+          db.reviews.forEach((review) => {
             if (review.productId === product.id) {
               sumRating = sumRating + review.rating;
               numReviews = numReviews + 1;

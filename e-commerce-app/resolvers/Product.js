@@ -1,11 +1,11 @@
 
 
 const Product = {
-    category: ({categoryId}, args, {categories}) => {
-        return categories.find(c => c.id === categoryId);
+    category: ({categoryId}, args, {db}) => {
+        return db.categories.find(c => c.id === categoryId);
     },
-    reviews: ({id}, args, {reviews}) => {
-        return reviews.filter(review => review.productId === id);
+    reviews: ({id}, args, {db}) => {
+        return db.reviews.filter(review => review.productId === id);
     }
 };
 
