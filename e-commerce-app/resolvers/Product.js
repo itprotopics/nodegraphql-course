@@ -1,11 +1,11 @@
-import { products, categories } from "../db.js";
+
 
 const Product = {
-    category: (parent, args, context) => {
-        const sayHello = context.sayHello;
-        sayHello();
-        const categoryId = parent.categoryId;
+    category: ({categoryId}, args, {categories}) => {
         return categories.find(c => c.id === categoryId);
+    },
+    reviews: ({id}, args, {reviews}) => {
+        return reviews.filter(review => review.productId === id);
     }
 };
 

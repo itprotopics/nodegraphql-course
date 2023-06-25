@@ -7,7 +7,7 @@ const typeDefs = gql`
         numberOfAnimals: Int
         price: Float
         isCool: Boolean
-        products: [Product!]!
+        products(filter: ProductsFilterInput): [Product!]!
         product(id: ID!): Product
         categories: [Category!]!
         category(id: ID!): Category
@@ -22,12 +22,26 @@ const typeDefs = gql`
         image: String!
         onSale: Boolean! 
         category: Category
+        reviews: [Review]!
     }
 
     type Category {
       id: ID!
       name: String!
-      products: [Product!]!
+      products(filter: ProductsFilterInput): [Product!]!
+    }
+
+    type Review {
+        id: ID!
+        date: String!
+        title: String!
+        comment: String!
+        rating: Int!
+    }
+
+    input ProductsFilterInput {
+        onSale: Boolean
+        avgRating: Int!
     }
 `
 

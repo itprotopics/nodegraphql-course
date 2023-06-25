@@ -1,4 +1,3 @@
-import { products, categories } from "../db.js";
 
 const Query = {
     hello: (parents, args, context) => {
@@ -14,14 +13,45 @@ const Query = {
     isCool: (parents, args, context) => {
         return false;
     },
-    products: (parents, args, context) => products,
-    product: (parents, args, context) => {
-        const { id } = args;
+
+
+    products: (parents, {filter}, {products, reviews}) => {
+        let filteredProducts = products;
+
+        if (filter) {
+            const { onSale, avgRating } = filter;
+            if (onSale === true ) {
+                filteredProducts = filteredProducts.filter((product) => {
+                    return product.onSale;
+                });
+            }
+            if ([1,2,3,4,5].includes(avgRating)) {
+
+                filteredProducts = filteredProducts.filter((product) => {
+                    let sumRating = 0;
+                    let numReviews = 0;
+                    reviews.forEach((review) => {
+                        if (review.productId === product.id ) {
+                            sumRating = sumRating + review.rating;
+                            numReviews = numReviews + 1;
+                        }
+                    });
+                    const avgProductRating = sumRating / numReviews;
+
+                    return avgProductRating > avgRating;
+                });
+            }
+        }
+        return filteredProducts;
+    },
+
+    product: (parents, {id}, {products}) => {
         return products.find(p => p.id === id);
     },
-    categories: (parents, args, context) => categories,
-    category: (parents, args, context) => {
-        const { id } = args;
+
+    categories: (parents, args, {categories}) => categories,
+
+    category: (parents, {id}, {categories}) => {
         return categories.find(c => c.id === id);
     }
 };
